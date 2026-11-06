@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Documents | JBWIA</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .documents-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .documents-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .documents-heading h1 {
+            color: #800000;
+            margin-bottom: 10px;
+        }
+
+        .documents-search {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 25px auto;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .document-card {
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #d4a72c;
+            border-radius: 10px;
+            padding: 22px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .document-card h3 {
+            color: #800000;
+            margin-bottom: 10px;
+        }
+
+        .document-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .document-category {
+            font-size: 13px;
+            font-weight: bold;
+            color: #8a6b12;
+            margin-bottom: 10px;
+        }
+
+        .document-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: #800000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .document-button:hover {
+            background: #5e0000;
+        }
+
+        .no-documents {
+            text-align: center;
+            padding: 25px;
+            display: none;
+        }
+
+        .back-to-home {
+    display: inline-block;
+    margin: 15px 0 25px;
+    padding: 12px 22px;
+    background-color: #800000;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: #b8860b;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+    </style>
+    <a href="index.html" class="back-to-home">
+    ← Back to Official Website
+</a>
+</head>
+
+<body>
+
+    <main class="documents-page">
+        <section class="documents-heading">
+            <h1>JBWIA Document Repository</h1>
+            <p>
+                Access school policies, guidelines, and important academic documents
+                from John B. Wahpoe Inland Academy.
+            </p>
+
+            <input
+    type="search"
+    id="documentSearch"
+    class="documents-search"
+    placeholder="Search school documents..."
+    aria-label="Search school documents"
+>
+
+<div class="document-filters">
+    <button type="button" class="filter-btn active" data-category="all">
+        All Documents
+    </button>
+
+    <button type="button" class="filter-btn" data-category="students">
+        Students
+    </button>
+
+    <button type="button" class="filter-btn" data-category="teachers">
+        Teachers
+    </button>
+
+    <button type="button" class="filter-btn" data-category="academics">
+        Academics
+    </button>
+
+    <button type="button" class="filter-btn" data-category="school policies">
+        School Policies
+    </button>
+</div>
+            >
+        </section>
+
+        <section class="documents-grid" id="documentsGrid">
+
+            <article class="document-card">
+                <div class="document-category">STUDENTS</div>
+                <h3>Student Code of Conduct</h3>
+                <p>Guidelines for student behavior, discipline, and responsibility.</p>
+                <a class="document-button" href="documents/student-code-of-conduct.pdf">
+                    View Document
+                </a>
+            </article>
+
+            <article class="document-card">
+                <div class="document-category">SCHOOL POLICIES</div>
+                <h3>School Rules and Regulations</h3>
+                <p>Important rules and expectations for the school community.</p>
+                <a class="document-button" href="documents/school-rules.pdf">
+                    View Document
+                </a>
+            </article>
+
+            <article class="document-card">
+                <div class="document-category">TEACHERS</div>
+                <h3>Teacher Code of Conduct</h3>
+                <p>Professional standards and responsibilities for teachers.</p>
+                <a class="document-button" href="documents/teacher-code-of-conduct.pdf">
+                    View Document
+                </a>
+            </article>
+
+            <article class="document-card">
+                <div class="document-category">ACADEMICS</div>
+                <h3>Academic Calendar</h3>
+                <p>School terms, important dates, examinations, and activities.</p>
+                <a class="document-button" href="documents/academic-calendar.pdf">
+                    View Document
+                </a>
+            </article>
+
+            <article class="document-card">
+                <div class="document-category">ACADEMICS</div>
+                <h3>Examination and Grading Policy</h3>
+                <p>Guidelines for assessments, examinations, and student grades.</p>
+                <a class="document-button" href="documents/examination-policy.pdf">
+                    View Document
+                </a>
+            </article>
+
+            <article class="document-card">
+                <div class="document-category">SCHOOL POLICIES</div>
+                <h3>Attendance and Uniform Policy</h3>
+                <p>School expectations for attendance, punctuality, and uniforms.</p>
+                <a class="document-button" href="documents/attendance-uniform-policy.pdf">
+                    View Document
+                </a>
+            </article>
+
+        </section>
+
+        <p class="no-documents" id="noDocuments">
+            No matching documents found. Try another search.
+        </p>
+    </main>
+
+    <script>
+        ```javascript
+const searchInput = document.getElementById("documentSearch");
+const cards = document.querySelectorAll(".document-card");
+const noDocuments = document.getElementById("noDocuments");
+const filterButtons = document.querySelectorAll(".filter-btn");
+
+let activeCategory = "all";
+
+function filterDocuments() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    cards.forEach(function (card) {
+        const categoryElement = card.querySelector(".document-category");
+
+        const category = categoryElement
+            ? categoryElement.textContent.toLowerCase().trim()
+            : "";
+
+        const text = card.textContent.toLowerCase();
+
+        const matchesSearch = text.includes(searchText);
+
+        const matchesCategory =
+            activeCategory === "all" ||
+            category === activeCategory;
+
+        const shouldShow = matchesSearch && matchesCategory;
+
+        card.style.display = shouldShow ? "" : "none";
+
+        if (shouldShow) {
+            visibleCount++;
+        }
+    });
+
+    noDocuments.style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+// Search documents
+searchInput.addEventListener("input", filterDocuments);
+
+// Filter documents by category
+filterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        activeCategory = this.dataset.category;
+
+        filterButtons.forEach(function (btn) {
+            btn.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        filterDocuments();
+    });
+});
+
+// Display all documents when the page loads
+filterDocuments();
+```
+    </script>
+
+</body>
+</html>
+```
